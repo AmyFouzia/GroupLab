@@ -23,7 +23,12 @@ class Rock extends Thing {
 
   void display() {
     /* Chris Choi */
-    ellipse(x,y,50,50);
+    fill(80);
+    ellipse(x,y,50,40);
+    noStroke();
+    triangle(x-20,y+20,x+20,y+20,x,y-25);
+    fill(255);
+    stroke(0);
   }
 }
 
