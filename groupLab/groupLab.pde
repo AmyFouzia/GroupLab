@@ -22,7 +22,8 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    /* Chris Choi */
+    ellipse(x,y,50,50);
   }
 }
 
@@ -31,10 +32,12 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    /* Christy */
+    x += random(0,10);
+    y += random(0,10);
   }
 }
-
+import java.util.Random;
 class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
 
@@ -54,7 +57,21 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    //Benjamin
+    Random r = new Random();
+    int next = Math.abs(r.nextInt())%4;
+    if (next == 0) {
+      x++;
+    }
+    else if (next == 1) {
+      x--;
+    }
+    else if (next == 2) {
+      y++;
+    }
+    else {
+      y--;
+    }
   }
 }
 
