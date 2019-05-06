@@ -42,7 +42,15 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    /* AMY */
+    /* 
+    a) A simple shape
+    b)Several shapes put together to make something more complex. (may need some instance variables from here onward)
+    c) An Image (use the menu sketch -> add file, so you don't have to worry about paths)
+    d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
+    */
+    ellipse(450, 300, 100, 100);
+    
   }
 
   void move() {
