@@ -60,7 +60,6 @@ public class LivingRock extends Rock implements Moveable {
     y += random(-10, 10);
   }
 }
-import java.util.Random;
 class Ball extends Thing implements Moveable {
   String mode;
   PImage ballPic;
@@ -103,10 +102,21 @@ class Ball extends Thing implements Moveable {
     
   }
   double theta = 0;
+  double xspeed = 0;
+  double yspeed = 0;
   void move() {
     //Benjamin
-    /*Random r = new Random();
-    int next = Math.abs(r.nextInt())%4;
+    if (x < 0 || x > 1000) {
+      xspeed *= -1;
+    }
+    if (y < 0 || y > 800) {
+      yspeed *= -1;
+    }
+    xspeed += random(-1.01,1);
+    yspeed += random(-1.01,1);
+    x += xspeed;
+    y += yspeed;
+    /*int next = (int)random(4);
     if (next == 0) {
       if (x < 800) {
         x++;
@@ -127,9 +137,9 @@ class Ball extends Thing implements Moveable {
         y--;
       }
     }*/
-    x -= Math.cos(Math.toRadians(theta));
+    /*x -= Math.cos(Math.toRadians(theta));
     y -= Math.sin(Math.toRadians(theta));
-    theta = (theta+1)%360;
+    theta = (theta+1)%360;*/
   }
 }
 
