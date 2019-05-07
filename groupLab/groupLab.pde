@@ -55,22 +55,30 @@ class Ball extends Thing implements Moveable {
     ellipse(450, 300, 100, 100);
     
   }
-
+  double theta = 0;
   void move() {
     //Benjamin
     Random r = new Random();
     int next = Math.abs(r.nextInt())%4;
     if (next == 0) {
-      x++;
+      if (x < 800) {
+        x++;
+      }
     }
     else if (next == 1) {
-      x--;
+      if (x > 0) {
+        x--;
+      }
     }
     else if (next == 2) {
-      y++;
+      if (y < 800) {
+        y++;
+      }
     }
     else {
-      y--;
+      if (y > 0) {
+        y--;
+      }
     }
   }
 }
