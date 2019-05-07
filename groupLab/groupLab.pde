@@ -100,7 +100,7 @@ class Ball extends Thing implements Moveable {
   double theta = 0;
   void move() {
     //Benjamin
-    Random r = new Random();
+    /*Random r = new Random();
     int next = Math.abs(r.nextInt())%4;
     if (next == 0) {
       if (x < 800) {
@@ -121,7 +121,10 @@ class Ball extends Thing implements Moveable {
       if (y > 0) {
         y--;
       }
-    }
+    }*/
+    x -= Math.cos(Math.toRadians(theta));
+    y -= Math.sin(Math.toRadians(theta));
+    theta = (theta+1)%360;
   }
 }
 
