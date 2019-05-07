@@ -84,12 +84,15 @@ class Ball extends Thing implements Moveable {
     c) An Image (use the menu sketch -> add file, so you don't have to worry about paths)
     d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
     */
-    ellipse(450, 300, 100, 100);
+    //ellipse(450, 300, 100, 100);
+    
     if(mode.equals("simple")){
       ellipse(x, y, 100, 100);
       fill(100);
     }
     else if(mode.equals("complex")){
+      fill(80);
+      ellipse(x, y, 100, 100);
       
     }
     else{
@@ -136,10 +139,11 @@ ArrayList<Moveable> thingsToMove;
 void setup() {
   size(1000, 800);
   PImage img = loadImage("Rock.jpg");
+  PImage imgball = loadImage("ball.png");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), "complex", imgball);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
