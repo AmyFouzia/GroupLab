@@ -56,8 +56,12 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* Christy */
-    x += random(-10,10);
-    y += random(-10,10);
+    x += random(-10, 10);
+    y += random(-10, 10);
+    //Random r = new Random();
+    //int nextNum = r.nextInt();
+    //x += nextNum;
+    //y += nextNum;
   }
 }
 import java.util.Random;
@@ -100,23 +104,34 @@ class Ball extends Thing implements Moveable {
     }
     
   }
-
+  double theta = 0;
   void move() {
     //Benjamin
-    Random r = new Random();
+    /*Random r = new Random();
     int next = Math.abs(r.nextInt())%4;
     if (next == 0) {
-      x++;
+      if (x < 800) {
+        x++;
+      }
     }
     else if (next == 1) {
-      x--;
+      if (x > 0) {
+        x--;
+      }
     }
     else if (next == 2) {
-      y++;
+      if (y < 800) {
+        y++;
+      }
     }
     else {
-      y--;
-    }
+      if (y > 0) {
+        y--;
+      }
+    }*/
+    x -= Math.cos(Math.toRadians(theta));
+    y -= Math.sin(Math.toRadians(theta));
+    theta = (theta+1)%360;
   }
 }
 
