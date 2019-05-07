@@ -58,6 +58,18 @@ public class LivingRock extends Rock implements Moveable {
     /* Christy */
     x += random(-10, 10);
     y += random(-10, 10);
+    if(x == 0){
+      x += random (0, 10);
+    }
+    if(x == width){
+      x -= random (0, 10);
+    }
+    if(y == 0){
+      y += random (0, 10);
+    }
+    if(y == height){
+      y -= random (0, 10);
+    }
   }
 }
 class Ball extends Thing implements Moveable {
