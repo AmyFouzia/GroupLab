@@ -51,24 +51,21 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  float xMovement;
+  float yMovement;
+  
   LivingRock(float x, float y) {
     super(x, y);
+    xMovement = random(-10, 10);
+    yMovement = random(-10, 10);
   }
   void move() {
     /* Christy */
-    x += random(-10, 10);
-    y += random(-10, 10);
-    if(x == 0){
-      x += random (0, 10);
-    }
-    if(x == width){
-      x -= random (0, 10);
-    }
-    if(y == 0){
-      y += random (0, 10);
-    }
-    if(y == height){
-      y -= random (0, 10);
+    x += xMovement;
+    y += yMovement;
+    if(x < 0 || y < 0 || x > width || y > height){
+      xMovement *= -1;
+      yMovement *= -1;
     }
   }
 }
