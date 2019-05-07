@@ -53,20 +53,26 @@ class Rock extends Thing {
 public class LivingRock extends Rock implements Moveable {
   float xMovement;
   float yMovement;
+  int xDirection;
+  int yDirection;
   
   LivingRock(float x, float y) {
     super(x, y);
-    xMovement = random(-10, 10);
-    yMovement = random(-10, 10);
+    xMovement = random(0, 10);
+    yMovement = random(0, 10);
+    xDirection = 1;
+    yDirection = 1;
   }
   void move() {
     /* Christy */
-    x += xMovement;
-    y += yMovement;
     if(x < 0 || y < 0 || x > width || y > height){
-      xMovement *= -1;
-      yMovement *= -1;
+      xDirection *= -1;
+      yDirection *= -1;
+      xMovement = random(0, 10);
+      yMovement = random(0, 10);
     }
+    x += xMovement * xDirection;
+    y += yMovement * yDirection;
   }
 }
 class Ball extends Thing implements Moveable {
