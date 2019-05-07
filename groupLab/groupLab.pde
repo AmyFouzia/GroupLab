@@ -68,11 +68,13 @@ import java.util.Random;
 class Ball extends Thing implements Moveable {
   String mode;
   PImage ballPic;
+  String colorRandom;
   
-  Ball(float x, float y, String Mode, PImage BallPic) {
+  Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
     super(x, y);
     mode = Mode;
     ballPic = BallPic;
+    colorRandom = ColorRandom;
   }
   
   Ball(float x, float y){
@@ -147,7 +149,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), "complex", imgball);
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), "image", imgball, "color");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
