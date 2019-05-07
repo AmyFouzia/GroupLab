@@ -65,7 +65,7 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* Christy */
-    if(x < 0 || y < 0 || x > width || y > height){
+    if(x <= 0 || y <= 0 || x >= width || y >= height){
       xDirection *= -1;
       yDirection *= -1;
       xMovement = random(0, 10);
