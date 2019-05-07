@@ -66,9 +66,18 @@ public class LivingRock extends Rock implements Moveable {
 }
 import java.util.Random;
 class Ball extends Thing implements Moveable {
-  Ball(float x, float y) {
-
+  String mode;
+  PImage ballPic;
+  
+  Ball(float x, float y, String Mode, PImage BallPic) {
     super(x, y);
+    mode = Mode;
+    ballPic = BallPic;
+  }
+  
+  Ball(float x, float y){
+    super(x, y);
+    mode = "simple";
   }
 
   void display() {
@@ -80,25 +89,46 @@ class Ball extends Thing implements Moveable {
     d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
     */
     ellipse(450, 300, 100, 100);
+    if(mode.equals("simple")){
+      ellipse(x, y, 100, 100);
+      fill(100);
+    }
+    else if(mode.equals("complex")){
+      
+    }
+    else{
+      image(ballPic, x, y, 100, 100);
+    }
     
   }
-
+  double theta = 0;
   void move() {
     //Benjamin
-    Random r = new Random();
+    /*Random r = new Random();
     int next = Math.abs(r.nextInt())%4;
     if (next == 0) {
-      x++;
+      if (x < 800) {
+        x++;
+      }
     }
     else if (next == 1) {
-      x--;
+      if (x > 0) {
+        x--;
+      }
     }
     else if (next == 2) {
-      y++;
+      if (y < 800) {
+        y++;
+      }
     }
     else {
-      y--;
-    }
+      if (y > 0) {
+        y--;
+      }
+    }*/
+    x -= Math.cos(Math.toRadians(theta));
+    y -= Math.sin(Math.toRadians(theta));
+    theta = (theta+1)%360;
   }
 }
 
