@@ -17,13 +17,36 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  Rock(float x, float y) {
+  String mode;
+  PImage image;
+  Rock(float x, float y, String Mode, PImage Image) {
     super(x, y);
+    mode = Mode;
+    image = Image;
+  }
+  Rock(float x, float y) {
+    super(x,y);
+    mode = "simple";
   }
 
   void display() {
     /* Chris Choi */
-    ellipse(x,y,50,50);
+    if (mode.equals("complex")) {
+      fill(80);
+      ellipse(x,y,50,40);
+      noStroke();
+      triangle(x-20,y+20,x+20,y+20,x,y-25);
+      fill(255);
+      stroke(0);
+    }
+    else if (mode.equals("simple")) {
+      fill(80);
+      ellipse(x,y,50,40);
+      fill(255);
+    }
+    else {
+      image(image, x,y,55,40);
+    }
   }
 }
 
@@ -90,14 +113,14 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-
+  PImage img = loadImage("Rock.jpg");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
