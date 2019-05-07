@@ -56,8 +56,12 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* Christy */
-    x += random(-10,10);
-    y += random(-10,10);
+    x += random(-10, 10);
+    y += random(-10, 10);
+    //Random r = new Random();
+    //int nextNum = r.nextInt();
+    //x += nextNum;
+    //y += nextNum;
   }
 }
 import java.util.Random;
