@@ -140,27 +140,28 @@ class Ball extends Thing implements Moveable {
       return;
     }
     //Benjamin
-    if (x < 0 || x > 1000) {
-      xspeed *= -1;
+    if (x < 0) {
+      x = 0;
+      xspeed *= random(-1,-0.75);
     }
-    if (y < 0 || y > 800) {
-      yspeed *= -1;
+    if (x > 1000) {
+      x = 1000;
+      xspeed *= random(-1,-0.75);
     }
-    if (xspeed < 0) {
-      xspeed += random(-1,1.05);
+    if (y < 0) {
+      y = 0;
+      yspeed *= random(-1,-0.75);
     }
-    else {
-      xspeed += random(-1.05,1);
+    if (y > 800) {
+      y = 800;
+      yspeed *= random(-1,-0.75);
     }
-    if (yspeed < 0) {
-      yspeed += random(-1,1.05);
-    }
-    else {
-      yspeed += random(-1.05,1);
-    }
+    xspeed += random(-1,1);
+    yspeed += random(-1,1);
     x += xspeed;
     y += yspeed;
   }
+  
   double theta = 0;
   void otherMove() {
     x -= Math.cos(Math.toRadians(theta));
