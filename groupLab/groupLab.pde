@@ -18,11 +18,16 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing {
   String mode;
-  PImage image;
-  Rock(float x, float y, String Mode, PImage Image) {
+  PImage[] images;
+  int type;
+  Rock(float x, float y, String Mode, PImage[] Images) {
     super(x, y);
     mode = Mode;
-    image = Image;
+    images = new PImage[Images.length];
+    for (int i = 0; i < Images.length;i++) {
+      images[i] = Images[i];
+    }
+    type = (int)random(0,2);
   }
   Rock(float x, float y) {
     super(x,y);
@@ -45,7 +50,7 @@ class Rock extends Thing {
       fill(255);
     }
     else {
-      image(image, x,y,100,100);
+      image(images[type], x,y,100,100);
     }
   }
 }
@@ -63,8 +68,8 @@ public class LivingRock extends Rock implements Moveable {
     xDirection = 1;
     yDirection = 1;
   }
-  LivingRock(float x, float y, String Mode, PImage Image) {
-    super(x, y,Mode,Image);
+  LivingRock(float x, float y, String Mode, PImage[] Images) {
+    super(x, y,Mode,Images);
     xMovement = random(0, 10);
     yMovement = random(0, 10);
     xDirection = 1;
@@ -188,19 +193,20 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  PImage img = loadImage("rock.png");
+  PImage[] rocks = new PImage[] {loadImage("rock.png"), loadImage("stone.png")};
   PImage imgball = loadImage("ball.png");
+  
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100), "simple", imgball, "random");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
+    Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",rocks);
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), "image",img);
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), "image",rocks);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
