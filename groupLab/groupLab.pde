@@ -56,6 +56,7 @@ public class LivingRock extends Rock implements Moveable {
   int xDirection;
   int yDirection;
   
+  
   LivingRock(float x, float y) {
     super(x, y);
     xMovement = random(0, 10);
@@ -85,8 +86,8 @@ class Ball extends Thing implements Moveable {
   
   Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
     super(x, y);
-    mode = Mode;
     ballPic = BallPic;
+    mode = Mode;
     if(ColorRandom.equals("random")){
       ballColor1 = int(random(0,255));
       ballColor2 = int(random(0,255));
@@ -116,21 +117,14 @@ class Ball extends Thing implements Moveable {
     d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
     */
     //ellipse(450, 300, 100, 100);
-    
     if(mode.equals("simple")){
       ellipse(x, y, 100, 100);
       fill(100);
-    }
-    else if(mode.equals("complex")){
-      fill(80);
-      ellipse(x, y, 100, 100);
-      
     }
     else{
       image(ballPic, x, y, 100, 100);
     }
     fill(ballColor1, ballColor2, ballColor3);
-    
   }
   double xspeed = 0;
   double yspeed = 0;
