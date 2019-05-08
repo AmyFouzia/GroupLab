@@ -56,6 +56,7 @@ public class LivingRock extends Rock implements Moveable {
   int xDirection;
   int yDirection;
   
+  
   LivingRock(float x, float y) {
     super(x, y);
     xMovement = random(0, 10);
@@ -82,9 +83,8 @@ class Ball extends Thing implements Moveable {
   int ballColor2;
   int ballColor3;
   
-  Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
+  Ball(float x, float y, PImage BallPic, String ColorRandom) {
     super(x, y);
-    mode = Mode;
     ballPic = BallPic;
     if(ColorRandom.equals("random")){
       ballColor1 = int(random(0,255));
@@ -111,21 +111,19 @@ class Ball extends Thing implements Moveable {
     d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
     */
     //ellipse(450, 300, 100, 100);
-    
+    if(int(random(2)) == 0){
+      mode = "simple";
+    } else{
+      mode = "image";
+    }
     if(mode.equals("simple")){
       ellipse(x, y, 100, 100);
       fill(100);
-    }
-    else if(mode.equals("complex")){
-      fill(80);
-      ellipse(x, y, 100, 100);
-      
     }
     else{
       image(ballPic, x, y, 100, 100);
     }
     fill(ballColor1, ballColor2, ballColor3);
-    
   }
   double theta = 0;
   double xspeed = 0;
@@ -191,7 +189,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), "simple", imgball, "random");
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), imgball, "random");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
