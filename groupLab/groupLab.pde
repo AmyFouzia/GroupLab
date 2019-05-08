@@ -56,13 +56,30 @@ public class LivingRock extends Rock implements Moveable {
   int xDirection;
   int yDirection;
   
-  
   LivingRock(float x, float y) {
     super(x, y);
     xMovement = random(0, 10);
     yMovement = random(0, 10);
     xDirection = 1;
     yDirection = 1;
+  }
+  LivingRock(float x, float y, String Mode, PImage Image) {
+    super(x, y,Mode,Image);
+    xMovement = random(0, 10);
+    yMovement = random(0, 10);
+    xDirection = 1;
+    yDirection = 1;
+  }
+  
+  void display() {
+    super.display();
+    fill(255);
+    ellipse(x+40,y+40,20,20);
+    ellipse(x+70,y+40,20,20);
+    fill(0);
+    ellipse(x+40,y+40,10,10);
+    ellipse(x+70,y+40,10,10);
+    fill(255);
   }
   void move() {
     /* Christy */
@@ -183,7 +200,7 @@ void setup() {
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), "image",img);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
