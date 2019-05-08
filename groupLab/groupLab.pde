@@ -45,7 +45,7 @@ class Rock extends Thing {
       fill(255);
     }
     else {
-      image(image, x,y,55,40);
+      image(image, x,y,100,100);
     }
   }
 }
@@ -127,8 +127,18 @@ class Ball extends Thing implements Moveable {
     if (y < 0 || y > 800) {
       yspeed *= -1;
     }
-    xspeed += random(-1.01,1);
-    yspeed += random(-1.01,1);
+    if (xspeed < 0) {
+      xspeed += random(-1,1.05);
+    }
+    else {
+      xspeed += random(-1.05,1);
+    }
+    if (yspeed < 0) {
+      yspeed += random(-1,1.05);
+    }
+    else {
+      yspeed += random(-1.05,1);
+    }
     x += xspeed;
     y += yspeed;
     /*int next = (int)random(4);
@@ -165,7 +175,7 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-  PImage img = loadImage("Rock.jpg");
+  PImage img = loadImage("rock.png");
   PImage imgball = loadImage("ball.png");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
