@@ -82,6 +82,7 @@ class Ball extends Thing implements Moveable {
   int ballColor1;
   int ballColor2;
   int ballColor3;
+  boolean moveType;
   
   Ball(float x, float y, PImage BallPic, String ColorRandom) {
     super(x, y);
@@ -94,6 +95,10 @@ class Ball extends Thing implements Moveable {
       ballColor1 = 255;
       ballColor2 = 0;
       ballColor3 = 0;
+    }
+    moveType = false;
+    if (random(10) >= 5) {
+      moveType = true;
     }
   }
   
@@ -125,10 +130,13 @@ class Ball extends Thing implements Moveable {
     }
     fill(ballColor1, ballColor2, ballColor3);
   }
-  double theta = 0;
   double xspeed = 0;
   double yspeed = 0;
   void move() {
+    if (moveType) {
+      otherMove();
+      return;
+    }
     //Benjamin
     if (x < 0 || x > 1000) {
       xspeed *= -1;
@@ -150,30 +158,12 @@ class Ball extends Thing implements Moveable {
     }
     x += xspeed;
     y += yspeed;
-    /*int next = (int)random(4);
-    if (next == 0) {
-      if (x < 800) {
-        x++;
-      }
-    }
-    else if (next == 1) {
-      if (x > 0) {
-        x--;
-      }
-    }
-    else if (next == 2) {
-      if (y < 800) {
-        y++;
-      }
-    }
-    else {
-      if (y > 0) {
-        y--;
-      }
-    }*/
-    /*x -= Math.cos(Math.toRadians(theta));
+  }
+  double theta = 0;
+  void otherMove() {
+    x -= Math.cos(Math.toRadians(theta));
     y -= Math.sin(Math.toRadians(theta));
-    theta = (theta+1)%360;*/
+    theta = (theta+1)%360;
   }
 }
 
