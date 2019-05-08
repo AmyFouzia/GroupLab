@@ -78,13 +78,23 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Moveable {
   String mode;
   PImage ballPic;
-  String colorRandom;
+  int ballColor1;
+  int ballColor2;
+  int ballColor3;
   
   Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
     super(x, y);
     mode = Mode;
     ballPic = BallPic;
-    colorRandom = ColorRandom;
+    if(ColorRandom.equals("random")){
+      ballColor1 = int(random(0,255));
+      ballColor2 = int(random(0,255));
+      ballColor3 = int(random(0,255));
+    } else{
+      ballColor1 = 255;
+      ballColor2 = 0;
+      ballColor3 = 0;
+    }
   }
   
   Ball(float x, float y){
@@ -114,6 +124,7 @@ class Ball extends Thing implements Moveable {
     else{
       image(ballPic, x, y, 100, 100);
     }
+    fill(ballColor1, ballColor2, ballColor3);
     
   }
   double theta = 0;
@@ -180,7 +191,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), "image", imgball, "color");
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), "simple", imgball, "random");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
