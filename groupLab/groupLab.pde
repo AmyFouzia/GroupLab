@@ -84,9 +84,10 @@ class Ball extends Thing implements Moveable {
   int ballColor3;
   boolean moveType;
   
-  Ball(float x, float y, PImage BallPic, String ColorRandom) {
+  Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
     super(x, y);
     ballPic = BallPic;
+    mode = Mode;
     if(ColorRandom.equals("random")){
       ballColor1 = int(random(0,255));
       ballColor2 = int(random(0,255));
@@ -116,11 +117,6 @@ class Ball extends Thing implements Moveable {
     d) Choose randomly: Simple, Complex, or Image  (you may need a new constructor for this)
     */
     //ellipse(450, 300, 100, 100);
-    if(int(random(2)) == 0){
-      mode = "simple";
-    } else{
-      mode = "image";
-    }
     if(mode.equals("simple")){
       ellipse(x, y, 100, 100);
       fill(100);
@@ -179,7 +175,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), imgball, "random");
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), "simple", imgball, "random");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",img);
