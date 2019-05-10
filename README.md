@@ -9,3 +9,4 @@
 
 ## Pair Programming
 - Wednesday, May 8, 2019 - Amy and Christy pair programming - Created random colors for ball display
+- Wednesday, May 8, 2019 - Benjamin and Chris - Changed rock display and movement of the ball
