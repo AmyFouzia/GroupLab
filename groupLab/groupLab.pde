@@ -20,7 +20,7 @@ abstract class Thing implements Displayable {
   abstract void display();
 }
 
-class Rock extends Thing {
+class Rock extends Thing implements Collideable {
   String mode;
   PImage[] images;
   int type;
@@ -56,6 +56,21 @@ class Rock extends Thing {
     else {
       image(images[type], x,y,100,100);
     }
+  }
+  
+  boolean isTouching(Thing other){
+    if (mode.equals("simple") || mode.equals("complex")) {
+      double xmid = x + 25;
+      double ymid = y + 20;
+    }
+    else {
+      double xmid = x + 50;
+      double ymid = y + 50;
+    }
+    if (Math.sqrt(Math.pow((double)(other.x+50-xmid),2.0) + Math.pow((double)(other.y+50-ymid),2.0)) < 100) {
+      return true; 
+    }
+    return false;
   }
 }
 
