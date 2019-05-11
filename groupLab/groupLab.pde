@@ -69,7 +69,7 @@ class Rock extends Thing implements Collideable {
       xmid = x + 50;
       ymid = y + 50;
     }
-    if (Math.sqrt(Math.pow((double)(other.x+50-xmid),2.0) + Math.pow((double)(other.y+50-ymid),2.0)) < 100) {
+    if (Math.sqrt(Math.pow((double)(other.x-xmid),2.0) + Math.pow((double)(other.y-ymid),2.0)) < 80) {
       return true; 
     }
     return false;
@@ -239,6 +239,16 @@ void setup() {
     thingsToMove.add(m);
     ListofCollideables.add(m);
   }
+  for (Moveable thing : thingsToMove) {
+    for (Collideable c : ListofCollideables) {
+      if (c.isTouching((Thing)thing)) {
+        if (thing instanceof Ball) {
+          ((Ball)thing).x = 50+random(width-100); 
+          ((Ball)thing).y = 50+random(height-100);     
+        }
+      }
+    }
+  }
 }
 void draw() {
   background(255);
@@ -248,13 +258,13 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
-    /*for (Collideable c : ListofCollideables) {
+    for (Collideable c : ListofCollideables) {
       if (c.isTouching((Thing)thing)) {
         if (thing instanceof Ball) {
           ((Ball)thing).xspeed *= -1; 
           ((Ball)thing).yspeed *= -1;     
         }
       }
-    }*/
+    }
   }
 }
