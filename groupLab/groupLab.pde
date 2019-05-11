@@ -112,8 +112,8 @@ public class LivingRock extends Rock implements Moveable {
     if(x <= 0 || y <= 0 || x >= width || y >= height){
       xDirection *= -1;
       yDirection *= -1;
-      xMovement = random(0, 10);
-      yMovement = random(0, 10);
+      xMovement = random(0, 5);
+      yMovement = random(0, 5);
     }
     x += xMovement * xDirection;
     y += yMovement * yDirection;
@@ -197,8 +197,8 @@ class Ball extends Thing implements Moveable {
       y = 800;
       yspeed *= random(-1,-0.75);
     }
-    xspeed += random(-1,1);
-    yspeed += random(-1,1);
+    xspeed += random(-0.5,0.5);
+    yspeed += random(-0.5,0.5);
     x += xspeed;
     y += yspeed;
   }
@@ -208,6 +208,16 @@ class Ball extends Thing implements Moveable {
     x -= Math.cos(Math.toRadians(theta));
     y -= Math.sin(Math.toRadians(theta));
     theta = (theta+1)%360;
+  }
+  
+  void changeColor(){
+    if(moveType){
+      fill(255,0,0);
+      ellipse(x, y, 100, 100);
+    } else{
+    fill(0,0,255);
+    ellipse(x, y, 100, 100);
+    }
   }
 }
 
@@ -262,7 +272,8 @@ void draw() {
       if (c.isTouching((Thing)thing)) {
         if (thing instanceof Ball) {
           ((Ball)thing).xspeed *= -1; 
-          ((Ball)thing).yspeed *= -1;     
+          ((Ball)thing).yspeed *= -1;   
+          ((Ball)thing).changeColor();
         }
       }
     }
