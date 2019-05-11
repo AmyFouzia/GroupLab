@@ -109,7 +109,7 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* Christy */
-    if(x <= 0 || y <= 0 || x >= width || y >= height){
+    if(x <= 10 || y <= 10 || x >= width - 50 || y >= height + 10){
       xDirection *= -1;
       yDirection *= -1;
       xMovement = random(0, 5);
@@ -197,8 +197,8 @@ class Ball extends Thing implements Moveable {
       y = 800;
       yspeed *= random(-1,-0.75);
     }
-    xspeed += random(-0.5,0.5);
-    yspeed += random(-0.5,0.5);
+    xspeed += random(-1,1);
+    yspeed += random(-1,1);
     x += xspeed;
     y += yspeed;
   }
@@ -212,11 +212,11 @@ class Ball extends Thing implements Moveable {
   
   void changeColor(){
     if(moveType){
-      fill(255,0,0);
-      ellipse(x, y, 100, 100);
-    } else{
-    fill(0,0,255);
-    ellipse(x, y, 100, 100);
+      fill(255,0,0);//circling balls turn red when colliding
+      ellipse(x, y, 125, 125);
+    } if(!moveType){
+      fill(0,0,255);//bouncing balls turn blue when colliding
+      ellipse(x, y, 125, 125);
     }
   }
 }
