@@ -146,11 +146,15 @@ class Ball extends Thing implements Moveable {
     if (random(10) >= 5) {
       moveType = true;
     }
+    xspeed = 0;
+    yspeed = 0;
   }
   
   Ball(float x, float y){
     super(x, y);
     mode = "simple";
+    xspeed = 0;
+    yspeed = 0;
   }
 
   void display() {
@@ -172,8 +176,6 @@ class Ball extends Thing implements Moveable {
     fill(ballColor1, ballColor2, ballColor3);
   }
   void move() {
-    xspeed = 0;
-    yspeed = 0;
     if (moveType) {
       otherMove();
       return;
@@ -246,13 +248,13 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
-    for (Collideable c : ListofCollideables) {
+    /*for (Collideable c : ListofCollideables) {
       if (c.isTouching((Thing)thing)) {
         if (thing instanceof Ball) {
           ((Ball)thing).xspeed *= -1; 
           ((Ball)thing).yspeed *= -1;     
         }
       }
-    }
+    }*/
   }
 }
