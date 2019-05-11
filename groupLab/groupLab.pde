@@ -126,6 +126,8 @@ class Ball extends Thing implements Moveable {
   int ballColor2;
   int ballColor3;
   boolean moveType;
+  double xspeed;
+  double yspeed;
   
   Ball(float x, float y, String Mode, PImage BallPic, String ColorRandom) {
     super(x, y);
@@ -169,9 +171,9 @@ class Ball extends Thing implements Moveable {
     }
     fill(ballColor1, ballColor2, ballColor3);
   }
-  double xspeed = 0;
-  double yspeed = 0;
   void move() {
+    xspeed = 0;
+    yspeed = 0;
     if (moveType) {
       otherMove();
       return;
@@ -211,6 +213,7 @@ class Ball extends Thing implements Moveable {
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> ListofCollideables;
 
 void setup() {
   size(1000, 800);
@@ -219,17 +222,20 @@ void setup() {
   
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  ListofCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100), "simple", imgball, "random");
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),"image",rocks);
     thingsToDisplay.add(r);
+    ListofCollideables.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), "image",rocks);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    ListofCollideables.add(m);
   }
 }
 void draw() {
@@ -240,5 +246,13 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
+    for (Collideable c : ListofCollideables) {
+      if (c.isTouching((Thing)thing)) {
+        if (thing instanceof Ball) {
+          ((Ball)thing).xspeed *= -1; 
+          ((Ball)thing).yspeed *= -1;     
+        }
+      }
+    }
   }
 }
