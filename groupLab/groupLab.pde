@@ -59,13 +59,15 @@ class Rock extends Thing implements Collideable {
   }
   
   boolean isTouching(Thing other){
+    double xmid;
+    double ymid;
     if (mode.equals("simple") || mode.equals("complex")) {
-      double xmid = x + 25;
-      double ymid = y + 20;
+      xmid = x + 25;
+      ymid = y + 20;
     }
     else {
-      double xmid = x + 50;
-      double ymid = y + 50;
+      xmid = x + 50;
+      ymid = y + 50;
     }
     if (Math.sqrt(Math.pow((double)(other.x+50-xmid),2.0) + Math.pow((double)(other.y+50-ymid),2.0)) < 100) {
       return true; 
