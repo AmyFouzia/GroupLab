@@ -12,4 +12,5 @@
 - Wednesday, May 8, 2019 - Benjamin and Chris - Changed rock display and movement of the ball
 
 ## Lab Updates
-- Christy: made the ball change color when colliding
+- Chris: Made the balls change direction when colliding with a rock or living rock (May 11)
+- Christy: made the ball change color when colliding (May 11)
