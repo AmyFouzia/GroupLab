@@ -211,12 +211,12 @@ class Ball extends Thing implements Moveable {
   }
   
   void changeColor(){
-    if(moveType){
+    if(moveType && mode.equals("simple")){//soccer balls do not change color
       fill(255,0,0);//circling balls turn red when colliding
-      ellipse(x, y, 125, 125);
-    } if(!moveType){
+      ellipse(x, y, 100, 100);
+    } if(!moveType && mode.equals("simple")){//soccer balls do not change color
       fill(0,0,255);//bouncing balls turn blue when colliding
-      ellipse(x, y, 125, 125);
+      ellipse(x, y, 100, 100);
     }
   }
 }
@@ -271,9 +271,9 @@ void draw() {
     for (Collideable c : ListofCollideables) {
       if (c.isTouching((Thing)thing)) {
         if (thing instanceof Ball) {
+          ((Ball)thing).changeColor();
           ((Ball)thing).xspeed *= -1; 
           ((Ball)thing).yspeed *= -1;   
-          ((Ball)thing).changeColor();
         }
       }
     }
